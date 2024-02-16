@@ -1,0 +1,75 @@
+{% load static %}
+{% include "partials/header.html" %}
+    <body class="sb-nav-fixed">
+            {% include "partials/navbar.html" %}
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Add New User</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="/users/userlist">User List</a></li>
+                            <li class="breadcrumb-item active">New User</li>
+                        </ol>
+                        <!--div class="card mb-4">
+                            <div class="card-body">
+                                DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
+                                <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>
+                                .
+                            </div>
+                        </div-->
+                        {% if error_message %}
+                             <p class="alert alert-danger">
+                                <strong>{{error_message}}</strong>
+                            </p>
+                        {% endif %}
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <form action="{% url 'users:processadd' %}" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row mb-3">
+                                        <div class="mb-2 col-md-6">
+                                            <label for="user_fname" class="form-label">Firstname</label>
+                                            <input type="text" class="form-control" name="user_fname" id="user_fname">
+                                        </div>
+                                        <div class="mb-2 col-md-6">
+                                            <label for="user_lname" class="form-label">Lastname</label>
+                                            <input type="text" class="form-control" name="user_lname" id="user_lname">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="mb-2 col-md-6">
+                                            <label for="user_position" class="form-label">Position</label>
+                                            <input type="text" class="form-control" name="user_position" id="user_position">
+                                        </div>
+                                        <div class="mb-2 col-md-6">
+                                            <label for="user_email" class="form-label">Email address</label>
+                                            <input type="email" class="form-control" name="user_email" id="user_email" aria-describedby="emailHelp">
+                                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="mb-2 col-md-6">
+                                            <label for="user_username" class="form-label">Username</label>
+                                            <input type="text" class="form-control" name="user_username" id="user_username">
+                                        </div>
+                                        <div class="mb-2 col-md-6">
+                                            <label for="user_password" class="form-label">Password</label>
+                                            <input type="password" class="form-control" name="user_password" id="user_password">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="user_image" class="form-label">Picture</label>
+                                        <input type="file" class="form-control" name="user_image" id="user_image">
+                                    </div>
+                            
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        <label class="form-check-label" for="exampleCheck1">I understand and accept the terms and condition</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-success mt-2">Save</button>
+                                 </form>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+{% include "partials/footer.html" %}  
